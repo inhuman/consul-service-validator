@@ -1,0 +1,14 @@
+{
+  "node_name": "api-tmt",
+  "advertise_addr": "172.29.10.77",
+  "datacenter": "infra1",
+  "recursors": ["10.0.0.53"],
+  "enable_script_checks": true,
+  "start_join": ["192.168.132.68","192.168.132.69","192.168.122.68"],
+  "retry_join": ["192.168.132.68","192.168.132.69","192.168.122.68"],
+  "dns_config": {
+    "service_ttl": {
+      "*": "0s"
+    }
+  }
+}

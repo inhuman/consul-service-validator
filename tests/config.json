@@ -1,0 +1,11 @@
+{
+  "bind_addr": "0.0.0.0",
+  "client_addr": "0.0.0.0",
+  "data_dir": "/var/consul",
+  "recursors": [ "10.0.0.53" ],
+  "enable_syslog": true,
+  "ports": { "dns": 53 },
+  "log_level": "warn",
+  "server": false,
+  "leave_on_terminate" : true
+}
