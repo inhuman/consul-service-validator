@@ -1,4 +1,4 @@
-# consul-service-validator
+# Consul service config validator
 Validator consul service json files
 
 **Usage**
