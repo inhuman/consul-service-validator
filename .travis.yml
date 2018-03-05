@@ -3,12 +3,9 @@ language: go
 go:
   - 1.8
 
-
-before_script:
+script:
   - GO_FILES=$(find . -iname '*.go' -type f | grep -v /vendor/)
   - export GOPATH="${TRAVIS_BUILD_DIR}/Godeps/_workspace:${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR}/vendor:$GOPATH"
   - go get -v -t -d ./src/...
-
-script:
   - go test -v -cover ./src/...
   - go build -v -i -x --ldflags '-extldflags "-static"' -o bin/core src/main.go
