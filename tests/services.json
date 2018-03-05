@@ -3,7 +3,7 @@
     {
       "id": "api-tmt",
       "name": "api-tmt",
-      "address": "https://172.29.10.77",
+      "address": "172.29.10.77",
       "port": 80
     }
   ]

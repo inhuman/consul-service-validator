@@ -37,7 +37,9 @@ func ServiceAddr(configDirPath string) int {
 		code = 1
 	}
 
-	fmt.Println("Configuration is valid!")
+	if code == 0 {
+		fmt.Println("Configuration is valid!")
+	}
 
 	return code
 }
