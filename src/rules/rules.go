@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func ConsulGenericRule(configDirPath string) error {
+func ConsulGenericRule(configDirPath string) int {
 
 	cmd := validate.New(&cli.BasicUi{Writer: os.Stdout, ErrorWriter: os.Stderr})
 
@@ -16,8 +16,8 @@ func ConsulGenericRule(configDirPath string) error {
 	fmt.Print("Consul generic rule: ")
 
 	if code := cmd.Run(args); code != 0 {
-		os.Exit(1)
+		return code
 	}
 
-	return nil
+	return 0
 }

@@ -4,6 +4,7 @@ import (
 	"validator"
 	"rules"
 	"os"
+	"fmt"
 )
 
 func main() {
@@ -11,5 +12,10 @@ func main() {
 	validator.Init(os.Args[1])
 	validator.AddRule(rules.ConsulGenericRule)
 	validator.AddRule(rules.ServiceAddr)
-	validator.Run()
+
+	exitCode := validator.Run()
+
+	fmt.Println("Exit code:", exitCode)
+
+	os.Exit(exitCode)
 }

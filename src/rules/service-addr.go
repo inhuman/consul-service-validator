@@ -3,23 +3,25 @@ package rules
 import (
 	"fmt"
 	"github.com/hashicorp/consul/agent/config"
-	"os"
 	"strings"
 	"regexp"
 )
 
-func ServiceAddr(configDirPath string) error {
+func ServiceAddr(configDirPath string) int {
 
-	fmt.Print("Service adders rule: ")
+	fmt.Print("Service address rule: ")
 
 	b, err := config.NewBuilder(config.Flags{ConfigFiles: []string{configDirPath}})
 
 	rt, err := b.Build()
 
+	code := 0
+
 	for _, service := range rt.Services {
 
 		if !validIP4(service.Address) {
 			fmt.Println("For service " + service.Name + " validation failed. Address " + service.Address + " is incorrect.")
+			code = 1
 		} else {
 			fmt.Println("Service " + service.Name + " address is valid ip.")
 		}
@@ -27,15 +29,17 @@ func ServiceAddr(configDirPath string) error {
 
 	if err != nil {
 		fmt.Sprintf("Config build failed: %v", err.Error())
-		os.Exit(1)
+		code = 1
 	}
 
 	if err != nil {
 		fmt.Sprintf("Config validation failed: %v", err.Error())
-		os.Exit(1)
+		code = 1
 	}
 
-	return nil
+	fmt.Println("Configuration is valid!")
+
+	return code
 }
 
 func validIP4(ipAddress string) bool {
