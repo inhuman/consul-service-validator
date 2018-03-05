@@ -39,17 +39,21 @@ func TestAddRule(t *testing.T) {
 func TestRun(t *testing.T) {
 	validator.Clear()
 
+	// test run uninitialized validator
 	code := validator.Run()
 	assert.Equal(t, 2, code)
+
 
 	err := validator.Init("../../tests")
 	assert.Equal(t, nil, err)
 
+	// test validator with default consul rules
 	validator.AddRule(rules.ConsulGenericRule)
 
 	code = validator.Run()
 	assert.Equal(t, 0, code)
 
+	// adding rule that fails
 	validator.AddRule(rules.ServiceAddr)
 	code = validator.Run()
 
