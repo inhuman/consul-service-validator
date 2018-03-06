@@ -23,5 +23,6 @@ before_script:
 script:
   - go test -v -cover ./src/...
   - go build -v -i -x --ldflags '-extldflags "-static"' -o bin/core src/main.go
+  - packer
 
 

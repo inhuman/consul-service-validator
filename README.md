@@ -1,5 +1,6 @@
 # Consul service config validator
 Validator consul service json files
+[![Build Status](https://travis-ci.org/inhuman/consul-service-validator.svg?branch=master)](https://travis-ci.org/inhuman/consul-service-validator)
 
 **Usage**
 
