@@ -1,8 +1,8 @@
 package main
 
 import (
-	"validator"
-	"rules"
+	"./validator"
+	"./rules"
 	"os"
 	"fmt"
 )
