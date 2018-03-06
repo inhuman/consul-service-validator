@@ -20,6 +20,7 @@ before_script:
   - ls -la vendor
   - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}"
   - go env
+  - ls -la ${TRAVIS_BUILD_DIR}/vendor/src/github.com/hashicorp/consul/agent/config
 
 
 script:
