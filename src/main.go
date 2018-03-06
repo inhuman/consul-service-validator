@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/inhuman/consul-service-validator/src/validator"
-	"github.com/inhuman/consul-service-validator/src/rules"
+	"validator"
+	"rules"
 	"os"
 	"fmt"
 )
