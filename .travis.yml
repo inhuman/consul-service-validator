@@ -17,7 +17,7 @@ notifications:
 before_script:
   - echo ${TRAVIS_BUILD_DIR}
   - pwd && ls -la
-  - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}:${TRAVIS_BUILD_DIR}/src:$HOME/gopath:$GOPATH"
+  - export GOPATH="${TRAVIS_BUILD_DIR}:$GOPATH"
   - go env
 #  - $HOME/gopath/bin/goveralls -service=travis-ci
   - go get -v -t -d ./src/...
