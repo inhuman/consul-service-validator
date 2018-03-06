@@ -3,8 +3,12 @@ language: go
 go:
   - 1.8
 
-script:
+before_script:
   - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:$GOPATH"
   - go get -v -t -d ./src/...
+
+script:
   - go test -v -cover ./src/...
   - go build -v -i -x --ldflags '-extldflags "-static"' -o bin/core src/main.go
+
+
