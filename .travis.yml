@@ -3,6 +3,11 @@ language: go
 go:
   - 1.8
 
+install: true
+
+notifications:
+  email: false
+
 before_script:
   - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:$GOPATH"
   - go get -v -t -d ./src/...
