@@ -3,8 +3,7 @@ language: go
 go:
   - 1.8
 
-install:
-  - git
+install: true
 
 notifications:
   email: false
