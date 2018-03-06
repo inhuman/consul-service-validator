@@ -17,7 +17,7 @@ notifications:
 before_script:
   - echo ${TRAVIS_BUILD_DIR}
   - pwd && ls -la
-  - ls -la vendor
+  - ls -la vendor/src/github.com
   - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}"
   - go env
   - ls -la ${TRAVIS_BUILD_DIR}/vendor/src/github.com/hashicorp/consul/agent/config
