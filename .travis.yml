@@ -13,11 +13,11 @@ notifications:
   email: false
 
 before_script:
-  - $HOME/gopath/bin/goveralls -service=travis-ci
   - echo ${TRAVIS_BUILD_DIR}
   - pwd && ls -la
   - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}:$HOME/gopath"
   - go env
+  - $HOME/gopath/bin/goveralls -service=travis-ci
   - go get -v -t -d ./src/...
 
 script:
