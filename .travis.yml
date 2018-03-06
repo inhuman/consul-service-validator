@@ -12,6 +12,7 @@ before_script:
   - echo ${TRAVIS_BUILD_DIR}
   - pwd && ls -la
   - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}"
+  - env
   - go get -v -t -d ./src/...
 
 script:
