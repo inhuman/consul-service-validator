@@ -3,16 +3,21 @@ language: go
 go:
   - 1.8
 
+before_install:
+  - go get github.com/mattn/goveralls
+
+
 install: true
 
 notifications:
   email: false
 
 before_script:
+  - $HOME/gopath/bin/goveralls -service=travis-ci
   - echo ${TRAVIS_BUILD_DIR}
   - pwd && ls -la
-  - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}"
-  - env
+  - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}:$HOME/gopath"
+  - go env
   - go get -v -t -d ./src/...
 
 script:
