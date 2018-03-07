@@ -37,8 +37,7 @@ jobs:
         api_key: $GITHUB_OAUTH_TOKEN
         skip_cleanup: true
         file: bin/validator
-        on:
-          tags: true
+
 
 
 
