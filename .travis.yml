@@ -33,14 +33,13 @@ jobs:
       - go build -i --ldflags '-extldflags "-static"' -o bin/core src/main.go
     - stage: build docker image
       script:
+      - chmod +x ./bin/validator && ./bin/validator
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-      - docker build -t travis-ci-build-stages-demo .
+      - docker build -t $DOCKER_USERNAME/consul-service-validator .
       - docker images
-      - docker tag travis-ci-build-stages-demo $DOCKER_USERNAME/travis-ci-build-stages-demo
-      - docker push $DOCKER_USERNAME/travis-ci-build-stages-demo
-    - stage: test
-      script: docker run --rm $DOCKER_USERNAME/travis-ci-build-stages-demo cat hello.txt
-    - script: docker run --rm $DOCKER_USERNAME/travis-ci-build-stages-demo cat hello.txt
+      - docker tag $DOCKER_USERNAME/consul-service-validator $DOCKER_USERNAME/consul-service-validator
+      - docker push $DOCKER_USERNAME/consul-service-validator
+
 
 
 
