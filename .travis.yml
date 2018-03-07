@@ -32,10 +32,10 @@ jobs:
       - go get -v -t -d ./src/...
       - go build -i -v --ldflags '-extldflags "-static"' -o bin/validator src/main.go
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-      - docker build -t $IMAGE_NAME .
+      - docker build -t "$IMAGE_NAME" .
       - docker images
-      - docker tag $IMAGE_NAME $IMAGE_NAME
-      - docker push $IMAGE_NAME
+      - docker tag "$IMAGE_NAME" "$IMAGE_NAME"
+      - docker push "$IMAGE_NAME"
 
 
 
