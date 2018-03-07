@@ -18,27 +18,25 @@ jobs:
     - stage: test app
       script:
       - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}"
-      - export IMAGE_NAME='idconstruct/consul-service-validator'
-      - export SOURCE_IMAGE='alpine'
+
       - env
       - go get -v -t -d ./src/...
       - go test -v -cover ./src/...
-    - stage: build bin
+    - stage: build bin and docker image
       script:
       - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}"
-      - export IMAGE_NAME='idconstruct/consul-service-validator'
+      - export PROJECT_NAME='consul-service-validator'
+      - export IMAGE_NAME='$DOCKER_USERNAME/$PROJECT_NAME'
       - export SOURCE_IMAGE='alpine'
       - env
       - go get -v -t -d ./src/...
       - go build -i --ldflags '-extldflags "-static"' -o bin/core src/main.go
-    - stage: build docker image
-      script:
       - chmod +x ./bin/validator && ./bin/validator
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-      - docker build -t $DOCKER_USERNAME/consul-service-validator .
+      - docker build -t $IMAGE_NAME .
       - docker images
-      - docker tag $DOCKER_USERNAME/consul-service-validator $DOCKER_USERNAME/consul-service-validator
-      - docker push $DOCKER_USERNAME/consul-service-validator
+      - docker tag $IMAGE_NAME $IMAGE_NAME
+      - docker push $IMAGE_NAME
 
 
 
