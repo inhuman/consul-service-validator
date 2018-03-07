@@ -31,9 +31,6 @@ jobs:
       - env
       - go get -v -t -d ./src/...
       - go build -i -v --ldflags '-extldflags "-static"' -o bin/validator src/main.go
-      - ls -la
-      - ls -la bin/
-      - chmod +x ./bin/validator && ./bin/validator
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
       - docker build -t $IMAGE_NAME .
       - docker images
