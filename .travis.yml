@@ -30,7 +30,9 @@ jobs:
       - export SOURCE_IMAGE='alpine'
       - env
       - go get -v -t -d ./src/...
-      - go build -i --ldflags '-extldflags "-static"' -o bin/core src/main.go
+      - go build -i -v --ldflags '-extldflags "-static"' -o bin/core src/main.go
+      - ls -la
+      - ls -la bin/
       - chmod +x ./bin/validator && ./bin/validator
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
       - docker build -t $IMAGE_NAME .
