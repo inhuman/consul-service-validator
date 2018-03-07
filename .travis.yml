@@ -34,8 +34,8 @@ jobs:
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
       - docker build -t $IMAGE_NAME .
       - docker images
-      - docker tag "$IMAGE_NAME" "$IMAGE_NAME"
-      - docker push "$IMAGE_NAME"
+      - docker tag $IMAGE_NAME $IMAGE_NAME
+      - docker push $IMAGE_NAME
 
 
 
