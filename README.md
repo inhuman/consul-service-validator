@@ -5,6 +5,8 @@ Validator consul service json files
 
 
 [![Coverage Status](https://coveralls.io/repos/github/inhuman/consul-service-validator/badge.svg?branch=master)](https://coveralls.io/github/inhuman/consul-service-validator?branch=master)
+
+
 **Usage**
 
 _Fail_
