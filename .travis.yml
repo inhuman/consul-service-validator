@@ -20,7 +20,7 @@ jobs:
     - stage: Test
       script:
       - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}"
-      - export PATH=$GOPATH}:$PATH
+      - export PATH=$GOPATH:$PATH
       - go get github.com/mattn/goveralls
       - go get -v -t -d ./src/...
       - go test -v -covermode=count -coverprofile=coverage.out ./src/...
