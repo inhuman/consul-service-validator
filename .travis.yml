@@ -15,12 +15,12 @@ notifications:
 
 jobs:
   include:
-    - stage: test
+    - stage: Test
       script:
       - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}"
       - go get -v -t -d ./src/...
       - go test -v -cover ./src/...
-    - stage: build docker image
+    - stage: Github release
       script:
       - export SOURCE_IMAGE='alpine'
       - export CGO_ENABLED=0
@@ -30,11 +30,13 @@ jobs:
       - env
       - go get -v -t -d ./src/...
       - go build -i -v --ldflags '-extldflags "-static"' -o bin/validator src/main.go
-      - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-      - docker build -t $IMAGE_NAME .
-      - docker images
-      - docker tag $IMAGE_NAME $IMAGE_NAME
-      - docker push $IMAGE_NAME
+      deploy:
+        provider: releases
+        api_key: $GITHUB_OAUTH_TOKEN
+        skip_cleanup: true
+        file: bin/validator
+        on:
+          tags: true
 
 
 

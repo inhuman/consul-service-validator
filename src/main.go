@@ -4,27 +4,38 @@ import (
 	"validator"
 	"rules"
 	"os"
-	"fmt"
+	"flag"
+)
+
+var skipGenericRule = flag.Bool(
+	"skip-generic-rule",
+	false,
+	"Skip consul generic rule",
+)
+
+var dirOrFile = flag.String(
+	"validate",
+	"/to_validate",
+	"Dir or file to validate",
 )
 
 func main() {
 
-	if len(os.Args) > 1 {
-		validator.Init(os.Args[1])
+	flag.Parse()
+
+	validator.Init(*dirOrFile)
+
+	if !*skipGenericRule {
 		validator.AddRule(rules.ConsulGenericRule)
-		validator.AddRule(rules.ServiceAddr)
-
-		os.Exit(
-			validator.Run())
-
-	} else {
-		fmt.Println(help)
-		os.Exit(1)
 	}
+	validator.AddRule(rules.ServiceAddr)
+
+	os.Exit(
+		validator.Run())
 }
 
 const help = `
-Usage: validator FILE_OR_DIRECTORY...
+Usage: validator [OPTIONS]
   Performs a thorough sanity test on Consul configuration files. For each file
   or directory given, the validate command will attempt to parse the contents
   just as the "consul agent" command would, and catch any errors.

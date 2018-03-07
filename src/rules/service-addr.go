@@ -9,13 +9,20 @@ import (
 
 func ServiceAddr(configDirPath string) int {
 
+	code := 0
 	fmt.Print("Service address rule: ")
 
 	b, err := config.NewBuilder(config.Flags{ConfigFiles: []string{configDirPath}})
-
+	if err != nil {
+		fmt.Println("Create config builder failed:", err.Error())
+		code = 1
+	}
 	rt, err := b.Build()
 
-	code := 0
+	if err != nil {
+		fmt.Println("Config build failed:", err.Error())
+		code = 1
+	}
 
 	for _, service := range rt.Services {
 
@@ -28,12 +35,7 @@ func ServiceAddr(configDirPath string) int {
 	}
 
 	if err != nil {
-		fmt.Sprintf("Config build failed: %v", err.Error())
-		code = 1
-	}
-
-	if err != nil {
-		fmt.Sprintf("Config validation failed: %v", err.Error())
+		fmt.Println("Config validation failed:", err.Error())
 		code = 1
 	}
 
