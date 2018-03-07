@@ -31,7 +31,7 @@ jobs:
       - go get -v -t -d ./src/...
       - go build -i -v --ldflags '-extldflags "-static"' -o bin/validator src/main.go
       before_deploy:
-        - git push origin --tags
+        - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
       deploy:
         provider: releases
         api_key: $GITHUB_OAUTH_TOKEN
