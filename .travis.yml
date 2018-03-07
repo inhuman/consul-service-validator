@@ -16,13 +16,15 @@ notifications:
 
 before_script:
   - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}"
+  - export IMAGE_NAME='alpine'
   - go env
   - go get -v -t -d ./src/...
 
 
 script:
   - go test -v -cover ./src/...
-  - go build -v -i -x --ldflags '-extldflags "-static"' -o bin/core src/main.go
-  - packer
+  - go build -i --ldflags '-extldflags "-static"' -o bin/core src/main.go
+  - packer validate packer/docker.json
+  - packer build packer/docker.json
 
 

@@ -18,104 +18,14 @@
       "login": "true",
       "login_username": "{{user `ci_user`}}",
       "login_password": "{{user `ci_pass`}}",
-      "login_server": "{{user `ci_server`}}",
-      "changes": [
-        "WORKDIR /app",
-        "CMD [\"supervisord\", \"-c\", \"/etc/supervisord.conf\"]",
-        "EXPOSE 9001"
-      ]
+      "login_server": "{{user `ci_server`}}"
     }
   ],
   "provisioners": [
     {
-      "type": "file",
-      "source": "{{pwd}}/packer/ssh/id_packer",
-      "destination": "/tmp/id_packer"
-    },
-    {
-      "type": "file",
-      "source": "{{pwd}}/packer/ssh/themes_key",
-      "destination": "/tmp/themes_key"
-    },
-    {
-      "type": "file",
-      "source": "{{pwd}}/packer/ssh/config",
-      "destination": "/tmp/config"
-    },
-    {
-      "type": "file",
-      "source": "{{pwd}}/packer/ssh/known_hosts_vm",
-      "destination": "/tmp/known_hosts"
-    },
-    {
       "type": "shell",
       "inline": [
-        "touch /etc/resolv.conf",
-        "mkdir -p ~/.ssh",
-        "mv /tmp/config ~/.ssh/config",
-        "mv /tmp/known_hosts ~/.ssh/known_hosts",
-        "mv /tmp/id_packer ~/.ssh/id_packer",
-        "chmod 0600 ~/.ssh/*"
-      ]
-    },
-    {
-      "type": "shell",
-      "inline": [
-        "dnf install -y ansible git",
-        "rm -rf /etc/ssh/ssh_config.d/05-redhat.conf"
-      ]
-    },
-    {
-      "type": "ansible-local",
-      "command": "ansible-playbook --skip-tags install_supervisord",
-      "playbook_file": "{{pwd}}/packer/playbook.yml",
-      "galaxy_file": "{{pwd}}/packer/requirements.yml",
-      "inventory_groups": "image"
-    },
-    {
-      "type": "shell",
-      "inline": [
-        "mv /tmp/themes_key ~/.ssh/id_packer",
-        "chmod 0600 ~/.ssh/*"
-      ]
-    },
-    {
-      "type": "file",
-      "source": "{{pwd}}/etc/nginx/conf.d/default.conf",
-      "destination": "/etc/nginx/conf.d/default.conf"
-    },
-    {
-      "type": "shell",
-      "inline": [
-        "mkdir -p /app/www",
-        "mkdir /logs && chmod 777 /logs",
-        "mkdir /etc/supervisor.d"
-      ]
-    },
-    {
-      "type": "file",
-      "source": "{{pwd}}/packer/index.php",
-      "destination": "/app/www/index.php"
-    },
-    {
-      "type": "file",
-      "source": "{{pwd}}/docker/etc/supervisor.d/php-fpm.ini",
-      "destination": "/etc/supervisor.d/php-fpm.ini"
-    },
-    {
-      "type": "file",
-      "source": "{{pwd}}/docker/etc/supervisor.d/nginx.ini",
-      "destination": "/etc/supervisor.d/nginx.ini"
-    },
-    {
-      "type": "file",
-      "source": "{{pwd}}/etc/php-fpm.d/www.conf",
-      "destination": "/etc/php-fpm.d/www.conf"
-    },
-    {
-      "type": "shell",
-      "inline": [
-        "php -v"
+        "mkdir -p ~/.ssh"
       ]
     }
   ],

@@ -1,10 +1,11 @@
 # Consul service config validator
 Validator consul service json files
+
 [![Build Status](https://travis-ci.org/inhuman/consul-service-validator.svg?branch=master)](https://travis-ci.org/inhuman/consul-service-validator)
 
 **Usage**
 
-_Failing_
+_Fail_
 ```
 $ validator /fail/config
 Validator initialized with consul config dir: tests/
@@ -26,7 +27,7 @@ Exit code: 0
 **Own rules example**
 
 1. Implement rule; it takes as argument config file or dir and return exit code 
-```
+```go
 func ServiceAddr(configDirPath string) int {
 
 	fmt.Print("Service address rule: ")
@@ -66,7 +67,7 @@ func ServiceAddr(configDirPath string) int {
 ```
 
 2. Add rule to validator
-```
+```go
 validator.AddRule(rules.ServiceAddr)
 ``` 
 
