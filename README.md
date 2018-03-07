@@ -3,6 +3,8 @@ Validator consul service json files
 
 [![Build Status](https://travis-ci.org/inhuman/consul-service-validator.svg?branch=master)](https://travis-ci.org/inhuman/consul-service-validator)
 
+
+[![Coverage Status](https://coveralls.io/repos/github/inhuman/consul-service-validator/badge.svg?branch=master)](https://coveralls.io/github/inhuman/consul-service-validator?branch=master)
 **Usage**
 
 _Fail_

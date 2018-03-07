@@ -16,8 +16,9 @@ notifications:
 
 before_script:
   - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}"
-  - export IMAGE_NAME='alpine'
-  - go env
+  - export IMAGE_NAME='idconstruct/consul-service-validator'
+  - export SOURCE_IMAGE='alpine'
+  - env
   - go get -v -t -d ./src/...
 
 
