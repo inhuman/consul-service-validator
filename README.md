@@ -8,7 +8,7 @@ Validator consul service json files
 **Usage**
 
 _Fail_
-```
+```bash
 $ validator /fail/config
 Validator initialized with consul config dir: tests/
 Consul generic rule: Configuration is valid!
@@ -17,7 +17,7 @@ Exit code: 1
 ```
 
 _Success_
-```
+```bash
 $ validator /success/config
 Validator initialized with consul config dir: tests/
 Consul generic rule: Configuration is valid!
