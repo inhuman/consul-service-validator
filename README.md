@@ -7,25 +7,28 @@ Validator consul service json files
 [![Coverage Status](https://coveralls.io/repos/github/inhuman/consul-service-validator/badge.svg?branch=master)](https://coveralls.io/github/inhuman/consul-service-validator?branch=master)
 
 
+**Fetching**
+```
+$ curl -L "$(curl -s https://api.github.com/repos/inhuman/consul-service-validator/releases/latest | jq -r ".assets[0].browser_download_url")" > /usr/local/bin/validator
+$ chmod +x /usr/local/bin/validator
+```
 **Usage**
 
-_Fail_
+_Fail (exit code: 1)_
 ```bash
 $ validator /fail/config
 Validator initialized with consul config dir: tests/
 Consul generic rule: Configuration is valid!
 Service address rule: For service api-tmt validation failed. Address https://172.29.10.77 is incorrect.
-Exit code: 1
 ```
 
-_Success_
+_Success (exit code: 0)_
 ```bash
 $ validator /success/config
 Validator initialized with consul config dir: tests/
 Consul generic rule: Configuration is valid!
 Service address rule: Service api-tmt address is valid ip.
 Configuration is valid!
-Exit code: 0
 ```
 
 **Own rules example**
