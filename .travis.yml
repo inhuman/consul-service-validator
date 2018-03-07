@@ -15,22 +15,18 @@ notifications:
 
 jobs:
   include:
-    - stage: test app
+    - stage: tests
       script:
       - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}"
-
-      - env
       - go get -v -t -d ./src/...
       - go test -v -cover ./src/...
-    - stage: build bin and docker image
+    - stage: build docker image
       script:
       - export SOURCE_IMAGE='alpine'
       - export PROJECT_NAME='consul-service-validator'
       - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}"
       - export IMAGE_NAME=$DOCKER_USERNAME/$PROJECT_NAME
       - env
-      - go get -v -t -d ./src/...
-      - go build -i -v --ldflags '-extldflags "-static"' -o bin/validator src/main.go
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
       - docker build -t $IMAGE_NAME .
       - docker images
