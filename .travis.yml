@@ -23,6 +23,7 @@ jobs:
     - stage: build docker image
       script:
       - export SOURCE_IMAGE='alpine'
+      - export CGO_ENABLED=0
       - export PROJECT_NAME='consul-service-validator'
       - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}"
       - export IMAGE_NAME=$DOCKER_USERNAME/$PROJECT_NAME
