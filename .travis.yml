@@ -26,8 +26,8 @@ jobs:
       - go get github.com/go-playground/overalls
       - go install github.com/go-playground/overalls
       - go test -v -covermode=count ./src/...
-      - $TRAVIS_BUILD_DIR/bin/overalls -project=github.com/inhuman/consul-service-validator -covermode=count
-      - $TRAVIS_BUILD_DIR/bin/goveralls -coverprofile=overalls.coverprofile -service travis-ci -repotoken $COVERALLS_TOKEN
+      - $TRAVIS_BUILD_DIR/vendor/bin/overalls -project=github.com/inhuman/consul-service-validator -covermode=count
+      - $TRAVIS_BUILD_DIR/vendor/bin/goveralls -coverprofile=overalls.coverprofile -service travis-ci -repotoken $COVERALLS_TOKEN
     - stage: Github release
       script:
       - export SOURCE_IMAGE='alpine'
