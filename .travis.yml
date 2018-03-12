@@ -22,11 +22,14 @@ jobs:
       - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}"
       - export PATH=$GOPATH:$PATH
       - go get -v -t -d ./src/...
-      - go test -v -covermode=count -coverprofile=coverage.out ./src/...
       - go get -u github.com/mattn/goveralls
-      - find / -name goveralls
-      - whereis goveralls
-      - goveralls -coverprofile=coverage.out -service travis-ci -repotoken $COVERALLS_TOKEN
+      - go get github.com/go-playground/overalls
+      - go install github.com/go-playground/overalls
+
+      - go test -v -covermode=count ./src/...
+      - overalls -project=github.com/inhuman/consul-service-validator -covermode=count
+
+      - goveralls -coverprofile=overalls.coverprofile -service travis-ci -repotoken $COVERALLS_TOKEN
     - stage: Github release
       script:
       - export SOURCE_IMAGE='alpine'
