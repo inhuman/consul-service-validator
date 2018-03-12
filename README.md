@@ -1,8 +1,12 @@
 # Consul service config validator
 Validator consul service json files
 
+Travis CI
+
 [![Build Status](https://travis-ci.org/inhuman/consul-service-validator.svg?branch=master)](https://travis-ci.org/inhuman/consul-service-validator)
 
+
+Coveralls
 
 [![Coverage Status](https://coveralls.io/repos/github/inhuman/consul-service-validator/badge.svg?branch=master)](https://coveralls.io/github/inhuman/consul-service-validator?branch=master)
 
