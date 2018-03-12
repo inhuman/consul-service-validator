@@ -28,9 +28,6 @@ jobs:
       - go get github.com/stretchr/testify/assert
       - go install github.com/go-playground/overalls
       - go test -v -covermode=count -coverprofile=overalls.coverprofile ./src/...
-#      - mkdir -p $GOPATH/src/$REPO_NAME
-#      - ln -svf $TRAVIS_BUILD_DIR/* $GOPATH/src/$REPO_NAME
-#      - $TRAVIS_BUILD_DIR/vendor/bin/overalls -project=$REPO_NAME -covermode=count
       - $TRAVIS_BUILD_DIR/vendor/bin/goveralls -coverprofile=overalls.coverprofile -service travis-ci -repotoken $COVERALLS_TOKEN
     - stage: Github release
       script:
@@ -50,9 +47,7 @@ jobs:
         skip_cleanup: true
         file: bin/validator
         on:
-          branches:
-            only:
-              - master
+          all_branches: true
 
 
 
