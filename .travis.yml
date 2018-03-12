@@ -25,8 +25,8 @@ jobs:
       - go get github.com/mattn/goveralls
       - go get github.com/go-playground/overalls
       - go install github.com/go-playground/overalls
-      - go test -v -covermode=count ./src/...
-      - $TRAVIS_BUILD_DIR/vendor/bin/overalls -project=${TRAVIS_BUILD_DIR} -covermode=count
+      - go test -v -covermode=count -coverprofile=overalls.coverprofile ./src/...
+#      - $TRAVIS_BUILD_DIR/vendor/bin/overalls -project=${TRAVIS_BUILD_DIR} -covermode=count
       - $TRAVIS_BUILD_DIR/vendor/bin/goveralls -coverprofile=overalls.coverprofile -service travis-ci -repotoken $COVERALLS_TOKEN
     - stage: Github release
       script:
