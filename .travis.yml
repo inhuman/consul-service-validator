@@ -1,7 +1,7 @@
 language: go
 
 go:
-  - 1.10
+  - "1.10"
 
 #before_install:
 #  - go get github.com/mattn/goveralls
@@ -22,7 +22,7 @@ jobs:
       - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}"
       - export PATH=$GOPATH:$PATH
       - export REPO_NAME='consul-service-validator'
-      - go get -v -t -d ./src/...
+      - go get -v -d ./src/...
       - go get github.com/mattn/goveralls
       - go get github.com/go-playground/overalls
       - go install github.com/go-playground/overalls
