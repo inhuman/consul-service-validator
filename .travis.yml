@@ -25,6 +25,7 @@ jobs:
       - go get -v -d ./src/...
       - go get github.com/mattn/goveralls
       - go get github.com/go-playground/overalls
+      - go get github.com/stretchr/testify/assert
       - go install github.com/go-playground/overalls
       - go test -v -covermode=count -coverprofile=overalls.coverprofile ./src/...
 #      - mkdir -p $GOPATH/src/$REPO_NAME
