@@ -48,6 +48,7 @@ jobs:
         file: bin/validator
         on:
           all_branches: true
+          tags: true
 
 
 
