@@ -21,12 +21,15 @@ jobs:
       script:
       - export GOPATH="${TRAVIS_BUILD_DIR}/vendor:${TRAVIS_BUILD_DIR}"
       - export PATH=$GOPATH:$PATH
+      - export REPO_NAME='consul-service-validator'
       - go get -v -t -d ./src/...
       - go get github.com/mattn/goveralls
       - go get github.com/go-playground/overalls
       - go install github.com/go-playground/overalls
       - go test -v -covermode=count -coverprofile=overalls.coverprofile ./src/...
-#      - $TRAVIS_BUILD_DIR/vendor/bin/overalls -project=${TRAVIS_BUILD_DIR} -covermode=count
+      - mkdir -p $GOPATH/src/$REPO_NAME
+      - ln -svf $TRAVIS_BUILD_DIR/* $GOPATH/src/$REPO_NAME
+      - $TRAVIS_BUILD_DIR/vendor/bin/overalls -project=$REPO_NAME -covermode=count
       - $TRAVIS_BUILD_DIR/vendor/bin/goveralls -coverprofile=overalls.coverprofile -service travis-ci -repotoken $COVERALLS_TOKEN
     - stage: Github release
       script:
