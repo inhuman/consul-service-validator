@@ -11,11 +11,11 @@ Coveralls
 [![Coverage Status](https://coveralls.io/repos/github/inhuman/consul-service-validator/badge.svg?branch=master)](https://coveralls.io/github/inhuman/consul-service-validator?branch=master)
 
 
-**Fetching**
+**Install**
 ```
-$ curl -L "$(curl -s https://api.github.com/repos/inhuman/consul-service-validator/releases/latest | jq -r ".assets[0].browser_download_url")" > /usr/local/bin/validator
-$ chmod +x /usr/local/bin/validator
+$ curl -s https://raw.githubusercontent.com/inhuman/consul-service-validator/master/install.sh | sudo bash
 ```
+
 **Usage**
 
 _Fail (exit code: 1)_

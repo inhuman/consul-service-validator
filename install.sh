@@ -16,3 +16,4 @@ curl -s -L $url > /usr/local/bin/validator
 
 chmod +x /usr/local/bin/validator
 
+echo "Consul service validator installed"
