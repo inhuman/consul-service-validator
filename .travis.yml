@@ -24,9 +24,10 @@ jobs:
       - go get -v -t -d ./src/...
       - go get github.com/mattn/goveralls
       - go get github.com/go-playground/overalls
+      - go install github.com/go-playground/overalls
       - go test -v -covermode=count ./src/...
-      - $HOME/gopath/bin/overalls -project=github.com/inhuman/consul-service-validator -covermode=count
-      - $HOME/gopath/bin/goveralls -coverprofile=overalls.coverprofile -service travis-ci -repotoken $COVERALLS_TOKEN
+      - $TRAVIS_BUILD_DIR/bin/overalls -project=github.com/inhuman/consul-service-validator -covermode=count
+      - $TRAVIS_BUILD_DIR/bin/goveralls -coverprofile=overalls.coverprofile -service travis-ci -repotoken $COVERALLS_TOKEN
     - stage: Github release
       script:
       - export SOURCE_IMAGE='alpine'
