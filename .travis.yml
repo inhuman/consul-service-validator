@@ -3,17 +3,9 @@ language: go
 go:
   - "1.10"
 
-#before_install:
-#  - go get github.com/mattn/goveralls
-#  - go get -u github.com/golang/dep/cmd/dep
-#  - dep ensure
-
 install: true
-
 notifications:
   email: false
-
-
 
 jobs:
   include:
